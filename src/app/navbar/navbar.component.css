@@ -1,0 +1,30 @@
+#initial{
+    padding: 4px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+nav{
+    position: sticky;
+    top: 0;
+}
+.navbar-toggler{
+    margin-right: 10px;
+}
+img{
+    height: 40px;width: auto; margin-right: 10px;
+}
+@media only screen and (max-width: 600px) {
+    .navbar-toggler-icon{
+        background-color: aliceblue;
+    }
+  }
+  @media only screen and (width > 288px) {
+    .navbar-toggler-icon{
+        background-color: #e91a93;
+    }
+    #img{
+       
+        height: 30px;
+    }
+  }
