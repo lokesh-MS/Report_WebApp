@@ -1,0 +1,16 @@
+
+
+.container{
+    text-align: center;
+    margin-top: 15%;
+}
+h3,p,h2{
+    color: red;
+}
+button{
+    background-color: aquamarine;
+    border-radius: 8px;
+    padding: 7px;
+    border: 1px solid gray;
+
+}

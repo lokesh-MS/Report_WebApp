@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row" style="height: 100vh;">
+        <div class="col-12 co-sm-12 col-md-6 col-lg-7 col-xl-7 ps-0 text-center" style="background: #002142;">
+           <!-- <img src="../../assets/images/teamLiftssLogo.png" alt="TeamLiftssLogo"> -->
+           <!-- <img class="img-fluid" [src]=timer_img alt=""> -->
+        </div>
+        <div class="col-12 co-sm-12 col-md-6 col-lg-5 col-xl-5" style="background-color: #002142;">
+            <section class="logo_bg">
+                <div class="row">
+                    <div class="col-md-12" style="position: relative;">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8 p-3 border" style="background-color: #dfd66ffa;position: relative; border-radius: 8px;">
+                              <img src="../../assets/images/teamLiftssLogo.png" alt="" class="logo">
+                              
+                                <div class="container mt-3" style="padding: 10px 0px;">
+                                <h2 class="text-center">Login</h2>
+                                <hr>
+                                <form  [formGroup]="loginGroup">
+                                  <div class="form-floating mb-3 mt-3 ">
+                                    <input type="text" class="form-control form-control-sm" id="userId" placeholder="Enter userId"  formControlName="username" name="userId">
+                                    <label for="userId">User ID</label>
+                                  </div>
+                                  <div class="form-floating mt-3 mb-3">
+                                    <input type="password" class="form-control form-control-sm" id="pwd" placeholder="Enter password"  formControlName="password" name="pswd">
+                                    <label for="pwd">Password</label>
+                                  </div>
+                                  <div style="display: flex; position: relative;">
+                                    <a routerLink="" class=" justify-content-sm-end " 
+                                    >Forget Password?</a>
+                                    <button type="submit" class="btn  glow-on-hover" (click)="login()">Login</button>
+                                  
+                                  </div>
+                                 
+                                </form>
+                              </div>
+                            
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+  </div>
