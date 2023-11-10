@@ -8,6 +8,13 @@ nav{
     position: sticky;
     top: 0;
 }
+#uName{
+    margin-right: 15px;
+    color: #000000;
+    margin-top: 10px;
+    font-family: serif;
+    font-size: 18px;
+}
 .navbar-toggler{
     margin-right: 10px;
 }

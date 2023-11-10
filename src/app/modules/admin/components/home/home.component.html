@@ -1,1 +1,76 @@
-<p>home works!</p>
+<!-- <div routerLink="/admin/MsgView"> -->
+<div  *ngFor="let record of AllRecordsArr ; let i = index" id="{{record.id}}">
+    <div class="alert" *ngIf="userName==record.receiver_Name">
+
+        <div style="width: 80%;" (click)="viewMessage(record.id)">
+            <div style="display: flex;width: 100%;">
+                <div id="senderName">
+                    <img src="/assets/images/TL.png" id="TeamLiftLogo" alt="TeamLiftssLogo">
+                    <strong>{{record.sender_Name}}</strong>
+                </div>
+                <div id="subject">
+                    <span>{{record.subject}}</span>
+                </div>
+            </div>
+        </div>
+    
+        <div id="lastPart">
+            <div style="display: flex;width: 100%;">
+                <div style="width: 100%; height: 24px;">
+    
+                    <!-- onclick="this.parentElement.style.display='none';" -->
+                    <!-- (click)="deleteMessage(record.id)" -->
+                    <p class="closebtn" data-bs-toggle="modal" data-bs-target="#myModal" (click)="getDeleteId(record.id)">&times;</p>
+                    <span style="float: right;" id="{{record.id}}" (click)="AddStar(record.id)"> <i class=" fa fa-solid fa-star"></i>
+                    </span>
+                </div>
+    
+
+<!-- Modal Testing Code -->
+
+<!-- modal end -->
+            </div>
+            <div style="display: flex;width: 100%;">
+                <div style="width: 100%;">
+                    <span class="time-left">{{record.inserted_Time}}</span>
+    
+                </div>
+            </div>
+        </div>
+
+    </div>
+ 
+
+
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal" >
+    <div class="modal-dialog modal-md">
+      <div class="modal-content" >
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <p class="modal-title">Delete</p>
+            
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <p>Are you sure you want to delete this message?</p>
+        </div>
+  
+        <!-- Modal footer -->
+        <!-- <div class="modal-footer"> -->
+          <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> -->
+          <div class="clearfix"  >
+            <button type="button"  data-bs-dismiss="modal" class="cancelbtn">Cancel</button>
+            <button type="button"  (click)="deleteMessage()"  class="deletebtn">Delete</button>
+          </div>
+        <!-- </div> -->
+  
+      </div>
+    </div>
+  </div>
+
+</div>

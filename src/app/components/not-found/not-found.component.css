@@ -1,16 +1,119 @@
 
 
+/* 
+
+
+
+*{
+    margin:0;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+/* body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000;
+} */ 
 .container{
     text-align: center;
     margin-top: 15%;
-}
+} 
 h3,p,h2{
     color: red;
 }
+h1{
+    margin-left: 35%;
+    padding: 0%;
+    color: #111;
+    font-size: 2em;
+    font-family: 'boxicons';
+}
 button{
-    background-color: aquamarine;
+    background-color: #002142;
     border-radius: 8px;
     padding: 7px;
     border: 1px solid gray;
+    color: white;
+    font-weight: bold;
+    font-family: 'boxicons';
 
+}
+h1 span{
+    display: table-cell;
+    margin: 20px;
+    padding: 0.5rem;
+    animation: animate 3s ease infinite;
+    
+}
+
+h1 span:nth-child(1)
+{
+    animation-delay: 0s;
+}
+h1 span:nth-child(2)
+{
+    animation-delay: 0.3s;
+}
+h1 span:nth-child(3)
+{
+    animation-delay: 0.6s;
+}
+h1 span:nth-child(4)
+{
+    animation-delay: 0.9s;
+}
+h1 span:nth-child(5)
+{
+    animation-delay: 1.2s;
+}
+h1 span:nth-child(6)
+{
+    animation-delay: 1.6s;
+}
+h1 span:nth-child(7)
+{
+    animation-delay: 1.8s;
+}
+h1 span:nth-child(8)
+{
+    animation-delay: 2s;
+}
+h1 span:nth-child(9)
+{
+    animation-delay: 2.2s;
+}
+h1 span:nth-child(10)
+{
+    animation-delay: 2.5s;
+}
+h1 span:nth-child(11)
+{
+    animation-delay: 2.6s;
+}
+
+
+
+@keyframes animate{
+    0%,100%{
+        color: #ff0000;
+        filter: blur(2px);
+        text-shadow: 0 0 10px #ff0000,
+        0 0 20px #ff0800,
+        0 0 400px #ff0800,
+        0 0 80px #ff0000,
+        0 0 120px #ff0800,
+        0 0 200px #ff0000,
+        0 0 300px #ff0800,
+        0 0 400px #ff0000;
+    }
+
+    5%,95%{
+        color: #111;
+        filter: blur(0px);
+        text-shadow: none;
+    }
 }

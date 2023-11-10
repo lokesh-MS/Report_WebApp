@@ -1,0 +1,44 @@
+<!-- <div routerLink="/admin/MsgView"> -->
+    <div  *ngFor="let record of responcessdata ; let i = index">
+        <span class="alert" *ngIf="record.stared=='Yes'">
+
+
+            <div style="width: 80%;" (click)="viewMessage(record.id)">
+                <div style="display: flex;width: 100%;">
+                    <div id="senderName">
+                        <img src="/assets/images/TL.png" id="TeamLiftLogo" alt="TeamLiftssLogo">
+                        <strong>{{record.sender_Name}}</strong>
+                    </div>
+                    <div id="subject">
+                        <span>{{record.subject}}</span>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="lastPart">
+                <div style="display: flex;width: 100%;">
+                    <div style="width: 100%; height: 24px;">
+        
+                        <p class="closebtn" onclick="this.parentElement.style.display='none';">&times;</p>
+                        <!-- <span style="float: right;" (click)="AddStar(record.id)"> <i class=" fa fa-solid fa-star"></i>
+                        </span> -->
+                    </div>
+        
+                </div>
+                <div style="display: flex;width: 100%;">
+                    <div style="width: 100%;">
+                        <span class="time-left">{{record.inserted_Time}}</span>
+        
+                    </div>
+                </div>
+            </div>
+        
+
+
+        </span>
+     
+    
+    
+    
+    </div>
+    <!-- </div> -->

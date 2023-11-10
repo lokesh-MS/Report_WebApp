@@ -23,9 +23,6 @@ margin-top: 8px;
     text-align: center;
     color: black;
     width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   #lastPart{
     width: 20%;
@@ -37,7 +34,7 @@ margin-top: 8px;
   }
   .closebtn {
     margin-right: 20px;
-    color: rgb(0, 0, 0);
+    color: white;
     font-weight: bold;
     float: right;
     font-size: 34px;
@@ -47,7 +44,7 @@ margin-top: 8px;
   }
   
   .closebtn:hover {
-    color: rgb(255, 0, 0);
+    color: black;
   }
 
   .time-left{
@@ -62,43 +59,4 @@ margin-top: 8px;
     margin-top: 5px;
     font-size: 19px;
     margin-right: 9px;
-  }
-
-  /******************************************************** model design ********************************************/
-
-  /* Set a style for all buttons */
-  button {
-    background-color: #04AA6D;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    /* width: 100%; */
-    opacity: 0.9;
-  }
-
-  button:hover {
-    opacity:1;
-  }
-
-  button:hover {
-    opacity:1;
-  }
-  
-  /* Float cancel and delete buttons and add an equal width */
-  .cancelbtn, .deletebtn {
-    float: left;
-    width: 50%;
-  }
-  
-  /* Add a color to the cancel button */
-  .cancelbtn {
-    background-color: #ccc;
-    color: black;
-  }
-  
-  /* Add a color to the delete button */
-  .deletebtn {
-    background-color: #f44336;
   }
