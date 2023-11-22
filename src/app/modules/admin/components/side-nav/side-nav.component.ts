@@ -1,6 +1,8 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2,Input,Output,EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { DbserviceService } from 'src/app/services/dbservice.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { StorageService } from 'src/app/services/storage.service';
 // import * as $ from 'jquery';
 @Component({
   selector: 'app-side-nav',
@@ -9,12 +11,23 @@ import { DbserviceService } from 'src/app/services/dbservice.service';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor(private el: ElementRef, private renderer: Renderer2,private services:DbserviceService,private router:Router) { }
-
-  // closeBtn = this.el.nativeElement.querySelector('#btn');
-  //  searchBtn =  this.el.nativeElement.querySelector(".bx-search");
+  constructor(private service:DbserviceService,private notify:NotificationService, private storage:StorageService,private router:Router,private el: ElementRef, private renderer: Renderer2) { }
   userName:any;
+  AllRecordArrData:any = new Array<any>();
+  stringSearch :any;
+  AllRecordsArr:any=[];
+  ArrayFormatData = new Array<any>();
+  notificationCount:any;
+  countArray=new Array<any>();
+ ngAfterViewInit(): void {
+
+
+ }
+ searchval:any;
+
   ngOnInit(): void {
+  
+    this.userName= this.storage.GetUser()
    let closeBtn = this.el.nativeElement.querySelector('#btn');
    let sidebar = this.el.nativeElement.querySelector('.sidebar');
    let searchBtn =  this.el.nativeElement.querySelector(".bx-search");
@@ -46,11 +59,53 @@ export class SideNavComponent implements OnInit {
         // this.renderer.setStyle(sideMenu, 'display', 'block');
         //this.renderer.setStyle(menu, 'display', 'block');
     });
-    this.userName=this.services.GetUser()
+    this.userName=this.storage.GetUser()
+    this.service.GetAllRecordServices().subscribe({
+      next:(res)=>{
+ this.AllRecordArrData=res;
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+
+    this.getAllRecord();
+
   }
  
   LogOut(){
     this.router.navigate(['/'])
      sessionStorage.clear();
   }
+notifyCount:number=0;
+  getAllRecord(){
+   
+    
+    this.service.GetAllRecordServices().subscribe({
+      next:(res)=>{
+        this.AllRecordsArr=res;
+        this.ArrayFormatData=this.AllRecordsArr
+        this.notifyCount =this.countArray.length;
+        this.ArrayFormatData.filter(number => {
+          if(number.receiver_Name==this.userName){
+            // 
+            this.countArray.push(number);
+             if(number.is_Message_Open==null || number.is_Message_Open!="Opened"){
+              this.notifyCount++;
+                     }
+          }
+          console.log(this.notifyCount);
+        }
+        
+        );
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+  }
+  
 }
+

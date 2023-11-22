@@ -1,11 +1,9 @@
 <div style="display: flex; width: 100%; ">
     <div style="width: 90%;">
         <h2 class="text-center" style="margin-top: 10px;font-family: auto;">Daily Report</h2>
-
+<div id="fileErrorMessage">{{file_ErrMess}}</div>
 <div id="file"> 
-    <!-- <input type="file" (change)="onFileSelected($event)" style="float: right;">
-    <i   title="File Upload" class='bx bxs-file-plus'></i> -->
-    <div class="upload">
+    <div class="upload" style="width: 23%;">
         <div class="upload__info">
           <svg
             t="1581822650945"
@@ -29,31 +27,12 @@
           <span class="upload__filename" onclick="document.getElementById('fileInput').click()">{{ Select_File}}</span>
           
         </div>
-        <button class="upload__button" (click)="FileUploadFun()">
-          <div class="upload__button__text">Upload</div>
-        </button>
-        <div class="upload__hint">Uploading...</div>
-        <div class="upload__progress">
-          <svg
-            width="16"
-            height="16"
-            class="check"
-            stroke="currentColor"
-            fill="none"
-            viewBox="0 0 13 11"
-          >
-            <polyline points="1 5.5 5 9.5 12 1.5"></polyline>
-          </svg>
-          Completed
-        </div>
+
       </div>
 
     <!--  -->
 </div>
 
-<!-- <label for="fileInput">Choose a file:</label>
-<input type="file" id="fileInput" name="file">
-<button type="button" onclick="document.getElementById('fileInput').click()">Browse</button> -->
         <form [formGroup]="RecordDataGroup">
 
             <div style="margin-top: 10%;">
@@ -83,7 +62,7 @@
                     <div style="width: 30%; margin-left: 10px;">
                         <label for="subject">Subject*</label>
                         <input type="text" style="background-color: #c7f5ec9c;" id="subject"
-                            class="form-control form-control-sm" formControlName="Subject">
+                            class="form-control form-control-sm" autocomplete="off" formControlName="Subject">
 
                     </div>
 

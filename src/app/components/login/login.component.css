@@ -12,7 +12,7 @@ label{
 textarea {
     outline: none;
     box-shadow: none !important;
-    border: 1px solid #000000 !important;
+    border: 1px solid #000000 ;
     background: transparent;
     font-weight: bold;
     
@@ -23,7 +23,7 @@ input[type="password"],
 textarea {
     outline: none;
     box-shadow: none !important;
-    border: 1px solid #000000 !important;
+    border: 1px solid #000000 ;
     background: transparent;
     font-weight: bold;
 }
@@ -41,9 +41,17 @@ a{
     color: black;
     font-weight: bold;
 }
-a:hover{
+a:hover {
     cursor: pointer;
     color: #ff9d00;
+}
+.bx-log-in:hover{
+    cursor: pointer;
+    color: #ff9d00;
+}
+
+.bx-log-in{
+    color:#002142;font-size: 19px;font-weight: bold;
 }
 .glow-on-hover {
    

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DbserviceService } from 'src/app/services/dbservice.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,10 @@ import { DbserviceService } from 'src/app/services/dbservice.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private service:DbserviceService) { }
+  constructor(private service:DbserviceService,private storeage:StorageService) { }
   userName:any;
   ngOnInit(): void {
-     this.userName=this.service.GetUser()
+     this.userName=this.storeage.GetUser()
   }
 
 }

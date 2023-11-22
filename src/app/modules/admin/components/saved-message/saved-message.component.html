@@ -1,6 +1,6 @@
 <!-- <div routerLink="/admin/MsgView"> -->
     <div  *ngFor="let record of responcessdata ; let i = index">
-        <span class="alert" *ngIf="record.stared=='Yes'">
+        <span class="alert" *ngIf="record.stared=='Yes' && userName==record.receiver_Name">
 
 
             <div style="width: 80%;" (click)="viewMessage(record.id)">

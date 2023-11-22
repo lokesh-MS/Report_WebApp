@@ -1,4 +1,6 @@
 <!-- <div routerLink="/admin/MsgView"> -->
+
+  
 <div  *ngFor="let record of AllRecordsArr ; let i = index" id="{{record.id}}">
     <div class="alert" *ngIf="userName==record.receiver_Name">
 
@@ -20,8 +22,8 @@
     
                     <!-- onclick="this.parentElement.style.display='none';" -->
                     <!-- (click)="deleteMessage(record.id)" -->
-                    <p class="closebtn" data-bs-toggle="modal" data-bs-target="#myModal" (click)="getDeleteId(record.id)">&times;</p>
-                    <span style="float: right;" id="{{record.id}}" (click)="AddStar(record.id)"> <i class=" fa fa-solid fa-star"></i>
+                    <p class="closebtn" data-bs-toggle="modal" title="Delete" data-bs-target="#myModal" (click)="getDeleteId(record.id)">&times;</p>
+                    <span style="float: right;" id="{{record.id}}" (click)="AddStar(record.id,star)"> <i id="star{{record.id}}" #star class=" fa fa-solid fa-star"></i>
                     </span>
                 </div>
     
@@ -32,7 +34,7 @@
             </div>
             <div style="display: flex;width: 100%;">
                 <div style="width: 100%;">
-                    <span class="time-left">{{record.inserted_Time}}</span>
+                    <span  class="time-left">{{record.inserted_Time}}</span>
     
                 </div>
             </div>
@@ -65,7 +67,7 @@
           <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> -->
           <div class="clearfix"  >
             <button type="button"  data-bs-dismiss="modal" class="cancelbtn">Cancel</button>
-            <button type="button"  (click)="deleteMessage()"  class="deletebtn">Delete</button>
+            <button type="button"  (click)="deleteMessage()"  class="deletebtn" data-bs-dismiss="modal">Delete</button>
           </div>
         <!-- </div> -->
   

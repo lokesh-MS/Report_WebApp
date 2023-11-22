@@ -24,6 +24,7 @@ img{
 
     color: #00B8A9;
     margin-top: 20px;
+	font-family: serif;
 }
 .fa-star{
     font-size: 22px;
@@ -140,4 +141,9 @@ body {
 		margin-top: 0;
 		opacity: 0;
 	}
+}
+
+#fileName{
+	color: #00B8A9;
+    font-weight: bold;
 }

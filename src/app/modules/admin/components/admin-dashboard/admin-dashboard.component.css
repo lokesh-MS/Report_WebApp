@@ -1,0 +1,11 @@
+/* Styles for screens 480px and below */
+@media screen and (max-width: 480px) {
+    /* Add your styles for smaller screens here */
+    body {
+      font-size: 14px; /* Example style for smaller screens */
+    }
+    .main{
+        width: 50%;
+    }
+  }
+  

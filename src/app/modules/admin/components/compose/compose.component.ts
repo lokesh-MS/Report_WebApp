@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DbserviceService } from 'src/app/services/dbservice.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-compose',
@@ -10,9 +11,10 @@ import { DbserviceService } from 'src/app/services/dbservice.service';
 })
 export class ComposeComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private service: DbserviceService,private router:Router,private el: ElementRef, private renderer: Renderer2,) { }
+  constructor(private fb: FormBuilder, private service: DbserviceService,private storage:StorageService,private router:Router,private el: ElementRef, private renderer: Renderer2,) { }
   username:any;
 RecordDataGroup!:FormGroup;
+currentTime :any;
   ngOnInit(): void {
     this.RecordDataGroup = this.fb.group({
       sender_Name:["",Validators.required],
@@ -23,52 +25,49 @@ RecordDataGroup!:FormGroup;
       File:[""],
       File_Name:[""],
       Inserted_Time:[""],
+      File_Code:[""],
     })
-    this.username= this.service.GetUser();
+    this.username= this.storage.GetUser();
     console.log(this.username);
 
 
 
 
-  
-// doenload btn Animation Function
 
-let uploadBtn:any = this.el.nativeElement.querySelector('.upload__button');
-let upload:any = this.el.nativeElement.querySelector('.upload');
-    uploadBtn.addEventListener("click", async () => {
-      upload.classList.add("uploading");
-      await this.sleep(3000);
-      upload.classList.add("uploaded");
-      await this.sleep(2000);
-      upload.classList.remove("uploading");
-      upload.classList.add("uploaded-after");
-      await this.sleep(1000);
-      upload.className = "upload";
-  });
-    // doenload btn Animation Function
   }
   Select_File:any='Select File'
 Db_FileName:any;
   sendMessage(){
-    const currentTime = new Date(); // Create a new Date object with the current date and time
-    const hours = currentTime.getHours();
-const minutes = currentTime.getMinutes();
-const seconds = currentTime.getSeconds();
 
-console.log(`Current time: ${hours}:${minutes}:${seconds}`);
-    debugger
     this.RecordDataGroup.value.sender_Name=this.username;
     this.RecordDataGroup.value.File=this.Select_File;
     this.RecordDataGroup.value.File_Name=this.Db_FileName;
-    this.RecordDataGroup.value.Inserted_Time= `${hours}:${minutes}`
+    this.RecordDataGroup.value.File_Code=this.file_code
+    this.currentTime = this.getCurrentTime();
+    this.RecordDataGroup.value.Inserted_Time= this.currentTime
+    console.log(this.RecordDataGroup.value);
+    if(this.RecordDataGroup.value.Receiver_Name==""){
+      let rePasswordInput =  this.el.nativeElement.querySelector("#to");
+    
+      this.renderer.setStyle(rePasswordInput, 'border-color', 'red');
+      return
+    }
+    else if(this.RecordDataGroup.value.Subject==""){
+      let rePasswordInput =  this.el.nativeElement.querySelector("#subject");
+    
+      this.renderer.setStyle(rePasswordInput, 'border-color', 'red');
+      return
+    }
+    else if(this.RecordDataGroup.value.Message==""){
+      let rePasswordInput =  this.el.nativeElement.querySelector("#Message");
+    
+      this.renderer.setStyle(rePasswordInput, 'border-color', 'red');
+      return
+    }
+    this.FileUploadFun()
 this.service.InsertRecordServices(this.RecordDataGroup.value).subscribe({
   next:(res)=>{
-    // const upload$ = this.service.UploadFile(this.formData);
-
-    // upload$.subscribe(sub=>{
-    //   console.log(sub);
-      
-    // });
+ 
     this.router.navigate(['/admin/home'])
 console.log(res);
 this.RecordDataGroup.reset();
@@ -80,13 +79,13 @@ console.log(err);
 })
 
 
-console.log(this.RecordDataGroup.value);
+// console.log(this.RecordDataGroup.value);
 
   }
   formData = new FormData();
   fileName:any;
   onFileSelected(event:any) {
-debugger
+
     const file:File = event.target.files[0];
 
     if (file) {
@@ -101,33 +100,53 @@ debugger
       
     }
 }
+file_ErrMess:any;
+file_code:any;
 FileUploadFun(){
-  debugger
+ 
   let FileNameData:any;
-  const upload$ = this.service.UploadFile(this.formData).subscribe({
-    next:(res)=>{
-       console.log(res);
-       FileNameData=res
-       this.service.StoreFileName(res)
-      // console.log(FileNameData);
-      
-    },
-    error:(err)=>{
-       console.log(err);
-      
-    }
-  });
-  this.Select_File='Select File'
-  // upload$.subscribe(sub=>{
-  //   let data:any =sub
-  //   console.log(JSON.parse(data));
-    
-    
-  // });
-}
-// lllll
+  console.log(this.formData.get('File'));
+  if(this.formData.get('File')==null){
+    this.file_ErrMess='Please select a file';
+    return;
+  }
+    const upload$ = this.service.UploadFile(this.formData).subscribe({
+            next:(res)=>{
+               console.log(res);
+               FileNameData=res
+               this.file_code=res
+               this.storage.StoreFileName(res)
+              
+            },
+            error:(err)=>{
+               console.log(err);
+              
+            }
+          });
+         
+          this.formData.delete('File');
 
- uploadBtn:any = this.el.nativeElement.querySelector('.upload__button');
- upload:any = this.el.nativeElement.querySelector('.upload');
- sleep = (time:any) => new Promise(resolve => setTimeout(resolve, time));
+  this.Select_File='Select File'
+
+}
+ getCurrentTime() {
+  var now = new Date();
+  var hours = now.getHours();
+  var minutes:any = now.getMinutes();
+  var ampm = hours >= 12 ? 'PM' : 'AM';
+
+  // Convert hours to 12-hour format
+  hours = hours % 12;
+  hours = hours ? hours : 12; // The hour '0' should be '12'
+
+  // Add leading zero to single-digit minutes
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+
+  var timeString = hours + ':' + minutes + ' ' + ampm;
+  return timeString;
+}
+
+
+
+
 }

@@ -11,27 +11,27 @@ export class NotificationService {
 //    timeOut: 3000,
 //  });
 //    }
-showSuccess() {
-  this.toastr.success('Login Successful', 'Login',{
+showSuccess(mes:any,header:any) {
+  this.toastr.success(mes, header,{
     progressBar:true,
     timeOut:3000,
   });
 }
-showError(err:any) {
-  this.toastr.error('Login Failed', err,{
+showError(mes:any,err:any) {
+  this.toastr.error(mes, err,{
     progressBar:true,
     timeOut:3000,
   });
   
 }
  
-    showInfo(){
-    this.toastr.info('everything is broken', 'Major Error', {
-   timeOut: 3000,
+    showInfo(mes:any,heading:any){
+    this.toastr.info(mes, heading, {
+   timeOut: 5000,
  });
    }
-    showWarning(){
-    this.toastr.warning('everything is broken', 'Major Error', {
+    showWarning(mes:any){
+    this.toastr.warning(mes, 'Login', {
    timeOut: 3000,
  });
    }

@@ -12,15 +12,15 @@
   top: 57px;
   height: 100%;
   /* width: 78px; */
-  width: 200px;
+  width: auto;
   background: #00B8A9;
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
 }
-.sidebar.open {
+/* .sidebar.open {
   width: 200px;
-}
+} */
 .sidebar.close {
     background: #4076ea;
     width: 78px;
@@ -117,7 +117,7 @@
   font-weight: 400;
   outline: none;
   height: 50px;
-  width: 100%;
+  width: 90%;
   width: 50px;
   border: none;
   border-radius: 12px;
@@ -146,8 +146,9 @@
   color: #fff;
 }
 .sidebar .bx-search:hover {
-  background: #fff;
-  color: #11101d;
+  /* background: #ece4e4; */
+  color: orangered;
+  cursor: pointer;
 }
 .sidebar li a {
   display: flex;
@@ -177,7 +178,7 @@
   pointer-events: auto;
 }
 */
-.sidebar li a:hover .links_name,
+.sidebar li a:hover .links_name,.badge
 .sidebar li a:hover i {
   transition: all 0.5s ease;
   color: #11101d;
@@ -261,11 +262,11 @@
   font-weight: 500;
   margin: 18px;
 }
-@media (max-width: 420px) {
+/* @media (max-width: 420px) {
   .sidebar li .tooltip {
     display: none;
   }
-}
+} */
 
 /*  */
 
@@ -344,4 +345,27 @@
 }
 .Animated-Radial-Menu .menu.active li {
   transform: rotate(calc(45deg * var(--i))) translateX(0px);
+}
+
+#badge{
+  border-radius: 50%;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+}
+#badge:hover{
+color: black;
+}
+
+/* Styles for screens 480px and below */
+@media screen and (max-width: 1200px) {
+  /* Add your styles for smaller screens here */
+  .sidebar  {
+    font-size: 14px; /* Example style for smaller screens */
+    width: 160px;
+  }
+  .sidebar li .tooltip {
+    display: none;
+  }
 }

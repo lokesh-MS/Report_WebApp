@@ -18,9 +18,10 @@
             
         </div>
     </div>
-    <div class="btnDiv" style="float: right; margin-top:20px;">
-          <p>{{data.File_Name}}</p>
-        <a  class="buttonDownload">Download</a>
+    <div class="btnDiv" style="float: right; margin-top:20px; cursor: pointer;" (click)="downloadFile()">
+          <p id="fileName">{{data.file_Name}}</p>
+          <span>{{FileErrMess}}</span>
+        <a  class="buttonDownload" >Download</a>
     </div>
     
     <div style=" display: flex; width: 100%; height: 100%;">

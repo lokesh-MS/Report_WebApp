@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DbserviceService } from 'src/app/services/dbservice.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-saved-message',
@@ -9,20 +10,21 @@ import { DbserviceService } from 'src/app/services/dbservice.service';
 })
 export class SavedMessageComponent implements OnInit {
 
-  constructor(private service:DbserviceService,private router:Router) { }
+  constructor(private service:DbserviceService,private router:Router,private storage:StorageService) { }
    StaredArr = new Array<number>(); // Creates an array with a length of 5
 responcessdata:any;
+userName:any;
   ngOnInit(): void {
     this.service.GetAllRecordServices().subscribe({
       next:(res)=>{
         this.responcessdata=res
+      },
+      error:(err)=>{
+        console.log(err);
         
-if(this.responcessdata.stared=='Yes'){
-// console.log(res);
-console.log(this.responcessdata);
-}
       }
     })
+  this.userName=  this.storage.GetUser()
   }
   viewMessage(Inx:any){
     this.service.Store_Id_Service(Inx);
