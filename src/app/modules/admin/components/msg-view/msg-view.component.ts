@@ -20,11 +20,9 @@ this.fileDownloadGroup = this.fb.group({
 })
    const id= this.service.Get_Id();
    this.service.GetSingleRecordService(id).subscribe({
-    next:(res)=>{
-      // console.log(this.sigleDataArr);
-      // console.log(res);
-      
+    next:(res)=>{ 
       this.sigleDataArr.push(res)
+console.log(res);
 
     },
     error:(err)=>{
@@ -35,24 +33,9 @@ this.fileDownloadGroup = this.fb.group({
   ngOnDestroy() {
     // Perform cleanup tasks here, e.g., unsubscribe from observables
   }
-  // formData = new FormData();
-  downloadFile(){
+  downloadFile(filename:any){
    debugger
-  //    let fileCode=  this.sigleDataArr[0].file_Code
-  //   //  this.formData.append("filename", fileCode);
-   
-
-  //   this.service.DownLoadFile(fileCode).subscribe({
-  //     next:(res)=>{
-  //       console.log(res);
-        
-  //     },
-  //     error:(err)=>{
-  //       console.log(err);
-        
-  //     }
-  //   })
-  const filename = this.sigleDataArr[0].file_Code // Replace with the actual filename
+  
   this.service.downloadFile(filename).subscribe((data: Blob) => {
     const blob = new Blob([data], { type: 'application/octet-stream' });
     const url = window.URL.createObjectURL(blob);

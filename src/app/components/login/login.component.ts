@@ -65,7 +65,7 @@ return;
     next:(res:any)=>{
 this.storage.StoreToken(res.token);
 this.storage.StoreUser(res.username);
-this.notify.showSuccess('LoginSuccessfully','Login')
+this.notify.showSuccess('LoginSuccessfully','Login!')
 this.router.navigate(["/admin"])
     },
     error:(err)=>{
@@ -75,13 +75,21 @@ this.notify.showError(err.error.message ,'Login')
   })
 }
 signUpMethod(){
+  if(this.signUpGroup.value.password=='' || this.signUpGroup.value.Repassword==''){
+    let passwordInput =  this.el.nativeElement.querySelector("#pwd1");
+    let rePasswordInput =  this.el.nativeElement.querySelector("#pwd2");
+    this.renderer.setStyle(passwordInput, 'border-color', 'red');
+    this.renderer.setStyle(rePasswordInput, 'border-color', 'red');
+    this.notify.showError('Please Enter Password','SignUp!')
+    return;
+  }
   let currentTime = this.getCurrentTime();
-  // this.signUpGroup.value.signUptime=currentTime.toString()
+  this.signUpGroup.value.SignUpdate=currentTime.toString()
   this.service.SignUpService(this.signUpGroup.value).subscribe({
     
     next:(res)=>{
 
-      this.notify.showSuccess("SignUp Successfully" ,'SignUp')
+      this.notify.showSuccess("SignUp Successfully" ,'SignUp!')
 // this.router.navigate([""])
 this.chaneFun();
 console.log(res);
@@ -94,7 +102,7 @@ console.log(res);
       this.renderer.setStyle(userNameInput, 'border-color', 'red');
       this.renderer.setStyle(passwordInput, 'border-color', 'red');
       this.renderer.setStyle(rePasswordInput, 'border-color', 'red');
-      this.notify.showError(err.error,'Login')
+      this.notify.showError(err.error,'SignUp')
 console.log(err.error);
 
     }
@@ -146,6 +154,9 @@ getCurrentTime() {
   var now = new Date();
   var hours = now.getHours();
   var minutes:any = now.getMinutes();
+ var year= now.getFullYear();
+ var month= now.getMonth();
+ var day = now.getDay()
   var ampm = hours >= 12 ? 'PM' : 'AM';
 
   // Convert hours to 12-hour format
@@ -155,7 +166,7 @@ getCurrentTime() {
   // Add leading zero to single-digit minutes
   minutes = minutes < 10 ? '0' + minutes : minutes;
 
-  var timeString = hours + ':' + minutes + ' ' + ampm;
+  var timeString = hours + ':' + minutes + ' ' + ampm +' - '+year+'/'+month+'/'+day;
   return timeString;
 }
 

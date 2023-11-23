@@ -18,7 +18,7 @@ export class SideNavComponent implements OnInit {
   AllRecordsArr:any=[];
   ArrayFormatData = new Array<any>();
   notificationCount:any;
-  countArray=new Array<any>();
+ countArray=new Array<any>();
  ngAfterViewInit(): void {
 
 
@@ -56,20 +56,8 @@ export class SideNavComponent implements OnInit {
     
     toggle.addEventListener('click', () => {
         menu.classList.toggle('active')
-        // this.renderer.setStyle(sideMenu, 'display', 'block');
-        //this.renderer.setStyle(menu, 'display', 'block');
     });
     this.userName=this.storage.GetUser()
-    this.service.GetAllRecordServices().subscribe({
-      next:(res)=>{
- this.AllRecordArrData=res;
-      },
-      error:(err)=>{
-        console.log(err);
-        
-      }
-    })
-
     this.getAllRecord();
 
   }

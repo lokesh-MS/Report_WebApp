@@ -84,7 +84,7 @@ this.router.navigate(['/admin/MsgView'])
  let Id=""
  Id='star'+ind
 
-let elementr=(<HTMLElement>document.getElementById(Id))
+// 
     this.service.GetSingleRecordService(ind).subscribe(sub=>{
       debugger
       this.SingleData=sub
@@ -92,10 +92,10 @@ let elementr=(<HTMLElement>document.getElementById(Id))
         this.SingleData.stared='Yes'
  let strId=''
  strId=ind;
-
-  let StarElement = this.el.nativeElement.querySelector('#star');
+ let StarElement=(<HTMLElement>document.getElementById(`star${{ind}}`))
+  // let StarElement = this.el.nativeElement.querySelector(`#`);
         console.log(StarElement);
-        this.renderer.setStyle(StarElement, 'color', '#00B8A9');
+        // this.renderer.setStyle(StarElement, 'color', '#00B8A9');
         this.notify.showInfo("Added To Star List",'This Message')
       }
       else{
