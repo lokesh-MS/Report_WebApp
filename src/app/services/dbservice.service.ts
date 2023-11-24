@@ -6,11 +6,14 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DbserviceService {
- LoginUrl='https://localhost:7205/api/Login/authenticate';
- SignupUrl='https://localhost:7205/api/signUp';
- RecordUrl="https://localhost:7205/api/recordInfo";
- FileUploadUrl='https://localhost:7205/UploadFile';
- FileDownloadUrl='https://localhost:7205/DownloadFile?filename='
+ LoginUrl='https://localhost/ReportWebApi/api/Login/authenticate';
+//  SignupUrl='https://localhost/ReportWebApi/signUp';
+ SignupUrl='https://localhost/ReportWebApi/api/signUp';
+ RecordUrl="https://localhost/ReportWebApi/api/recordInfo";
+//  FileUploadUrl='https://localhost:7205/UploadFile';
+ FileUploadUrl='https://localhost/ReportWebApi/UploadFile';
+//  FileDownloadUrl='https://localhost:7205/DownloadFile?filename='
+ FileDownloadUrl='https://localhost/ReportWebApi/DownloadFile?filename='
 // LoginUrl=' https://localhost:7205/api/Login'
   constructor( private http:HttpClient,) { }
 

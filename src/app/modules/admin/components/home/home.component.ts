@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DbserviceService } from 'src/app/services/dbservice.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { StorageService } from 'src/app/services/storage.service';
-
+declare var $:any
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -44,13 +44,15 @@ String_bool_val:any;
       next:(res)=>{
         this.AllRecordsArr=res;
         this.ArrayFormatData=this.AllRecordsArr
-        this.ArrayFormatData.filter(number => {
-         if(number.stared=='Yes') {
-          let starId="";
-          starId='star'+number.id
+        debugger
+         for(let i=0; i<this.AllRecordsArr.length; i++){
+       
+          if(this.AllRecordsArr[i].stared != null){
+           $("#star"+this.AllRecordsArr[i].id).addClass('addStartColor')
+          }else{
+            $("#star"+this.AllRecordsArr[i].id).removeClass('addStartColor')
+          }
          }
-        }
-        );
       },
       error:(err)=>{
         console.log(err);
